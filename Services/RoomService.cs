@@ -44,14 +44,14 @@ namespace Hotel.Services
         public async Task<IEnumerable<Room>> GetAvailableRooms()
         {
             return await _context.Rooms
-                .Where(r => r.Availability) // Supongamos que hay una propiedad IsAvailable en Room
+                .Where(r => r.Availability) 
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<Room>> GetOccupiedRooms()
         {
             return await _context.Rooms
-                .Where(r => !r.Availability) // Supongamos que las habitaciones ocupadas no son disponibles
+                .Where(r => !r.Availability) 
                 .ToListAsync();
         }
 
@@ -59,7 +59,7 @@ namespace Hotel.Services
         {
             var totalRooms = await _context.Rooms.CountAsync();
             var availableRooms = await _context.Rooms.CountAsync(r => r.Availability);
-            var occupiedRooms = totalRooms - availableRooms; // O puedes calcularlo de otra manera
+            var occupiedRooms = totalRooms - availableRooms; 
 
             return new RoomStatusDto
             {

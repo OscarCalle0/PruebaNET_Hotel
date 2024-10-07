@@ -7,10 +7,10 @@ namespace Hotel.Repositories
 {
     public interface IRoomRepository
     {
-        Task<IEnumerable<Room>> GetAll(); // Método para obtener todas las habitaciones
-        Task<Room> GetById(int id); // Método para obtener una habitación por ID
-        Task<IEnumerable<Room>> GetAvailableRooms(); // Método para obtener habitaciones disponibles
-        Task<IEnumerable<Room>> GetOccupiedRooms(); // Método para obtener habitaciones ocupadas
-        Task<RoomStatusDto> GetRoomStatus(); // Método para obtener el estado de las habitaciones
+        Task<IEnumerable<Room>> GetAll(); 
+        Task<Room> GetById(int id); 
+        Task<IEnumerable<Room>> GetAvailableRooms(); 
+        Task<IEnumerable<Room>> GetOccupiedRooms(); 
+        Task<RoomStatusDto> GetRoomStatus(); 
     }
 }

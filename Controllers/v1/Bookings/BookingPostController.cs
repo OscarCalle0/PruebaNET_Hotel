@@ -21,10 +21,9 @@ namespace Hotel.Controllers.v1.Bookings
         [Authorize]
         public async Task<IActionResult> AddBooking([FromBody] Hotel.Models.Booking booking)
         {
-            // Agregar el booking
+           
             await _bookingService.AddBooking(booking);
             
-            // Crear una respuesta personalizada con el booking creado, sin depender de GetBookingById
             return CreatedAtRoute("GetBookingById", new { id = booking.Id
         }, booking);
         }

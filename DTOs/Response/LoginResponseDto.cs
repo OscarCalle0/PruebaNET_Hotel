@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Hotel.DTOs.Response
 {
-    public class LoginDto
+    public class LoginResponseDto
     {
         public string Token { get; set; }
     }
