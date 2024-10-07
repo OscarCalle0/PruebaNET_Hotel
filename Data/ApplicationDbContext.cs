@@ -1,4 +1,5 @@
 using Hotel.Models;
+using Hotel.Seeders;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hotel.Data;
@@ -12,5 +13,14 @@ public class ApplicationDbContext : DbContext
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        // call of the sedders
+        RoomTypeSeeder.SeedRoomTypes(modelBuilder);
+        RoomSeeder.SeedRooms(modelBuilder);
     }
 }

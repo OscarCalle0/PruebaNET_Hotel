@@ -1,8 +1,8 @@
-//Environment variables are called
 using DotNetEnv;
 using Hotel.Data;
 using Microsoft.EntityFrameworkCore;
 
+//Environment variables are called
 Env.Load();
 
 var DB_HOST = Environment.GetEnvironmentVariable("DB_HOST");
