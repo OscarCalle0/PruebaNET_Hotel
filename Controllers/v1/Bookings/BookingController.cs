@@ -1,15 +1,22 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Hotel.Models;
+using Hotel.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Hotel.Controllers.v1.Bookings
+namespace Hotel.Controllers.v1.Booking
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class BookingController : ControllerBase
+    [Route("api/v1/bookings")]
+    [Tags("booking")]
+     public class BookingController : ControllerBase
     {
-        
+        protected readonly IBookingRepository _bookingService;
+
+        public BookingController(IBookingRepository bookingService)
+        {
+            _bookingService = bookingService;
+        }
     }
 }

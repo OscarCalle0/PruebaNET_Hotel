@@ -8,6 +8,7 @@ namespace Hotel.Repositories
     {
         Task<IEnumerable<Booking>> GetBookingsByGuestId(int guestId);
         Task<Booking> GetBookingById(int id);
+        Task<List<Booking>> GetBookingsByIdentificationNumber(string identification_number);
         Task AddBooking(Booking booking);
         Task DeleteBooking(int id);
     }

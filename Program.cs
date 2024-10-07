@@ -32,6 +32,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
 builder.Services.AddScoped<IRoomRepository, RoomService>();
 builder.Services.AddScoped<IRoomTypeRepository, RoomTypeService>();
 builder.Services.AddScoped<IGuestRepository, GuestService>();
+builder.Services.AddScoped<IBookingRepository, BookingService>();
 
 
 // JWT configuration (uncommented and adjusted)
