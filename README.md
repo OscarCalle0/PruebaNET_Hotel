@@ -1,80 +1,91 @@
+Aquí tienes el contenido formateado correctamente para un archivo `README.md`, utilizando Markdown para diferenciar los títulos, bloques de código y demás elementos:
 
-# Products API with JWT Authentication
+```md
+# Hotel Reservation API with JWT Authentication
 
-Esta API, construida con .NET, proporciona un conjunto de endpoints para gestionar productos. Utiliza autenticación JWT para garantizar que solo los usuarios autenticados puedan acceder a los recursos. La API está conectada a una base de datos MySQL, y se utilizan variables de entorno para la configuración.
+This API, built with .NET 8, provides a set of endpoints to efficiently manage hotel reservations. It includes JWT-based authentication, allowing secure access for employees who manage guest reservations and room availability. The API integrates with a MySQL database and uses environment variables for configuration.
 
-## Características
+## Key Features
 
-- Operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para productos.
-- Autenticación y autorización usando JSON Web Tokens (JWT).
-- Endpoints protegidos, accesibles solo para usuarios autenticados.
-- Integración con Swagger para pruebas y exploración de la API.
+- **Room and Reservation Management**: CRUD operations (Create, Read, Update, Delete) for rooms, reservations, and guests.
+- **JWT Authentication and Authorization**: Secure endpoints accessible only to authenticated users.
+- **Room Availability**: Endpoints to check available rooms and room types.
+- **Swagger Integration**: Fully documented API with Swagger for easy exploration and testing.
+- **Seed Data**: Predefined room types and rooms loaded into the database on application startup.
 
-## Requisitos
+## Project Requirements
 
-- .NET 8 SDK o superior.
-- Servidor MySQL.
-- Swagger está integrado, por lo que no se necesitan herramientas externas como Postman para probar la API.
+- **.NET 8 SDK** or higher.
+- **MySQL Database**.
+- **Swagger** integrated to explore the API without external tools like Postman.
 
-## Variables de Entorno
+## Environment Variables
 
-Asegúrate de establecer las siguientes variables de entorno antes de ejecutar la aplicación:
+Make sure to configure the following environment variables before running the application:
 
-```plaintext
-DB_HOST=tu_host
-DB_NAME=tu_nombre_de_base_de_datos
-DB_PORT=tu_puerto
-DB_USERNAME=tu_usuario
-DB_PASSWORD=tu_contraseña
+```bash
+DB_HOST=your_host
+DB_NAME=your_database_name
+DB_PORT=your_port
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
 
-JWT_KEY=tu_clave_jwt
-JWT_ISSUER=tu_emisor_jwt
-JWT_AUDIENCE=tu_audiencia_jwt
-JWT_EXPIRES_IN=tiempo_en_minutos
+JWT_KEY=your_jwt_secret
+JWT_ISSUER=your_jwt_issuer
+JWT_AUDIENCE=your_jwt_audience
+JWT_EXPIRES_IN=expiration_time_in_minutes
 ```
 
-## Configuración del Proyecto
+## Project Setup
 
-1. **Clona el repositorio:**
-   ```bash
-   git clone https://github.com/Riwi-io-Medellin/JWT-ProductManager.git
-   cd JWT-ProductManager
-   ```
+### 1. Clone the Repository:
 
-2. **Restaura los paquetes NuGet:**
-   Ejecuta el siguiente comando en el directorio del proyecto para restaurar los paquetes necesarios:
-   ```bash
-   dotnet restore
-   ```
-
-3. **Establece las variables de entorno:**
-   Antes de ejecutar la aplicación, asegúrate de que las variables de entorno para la base de datos y JWT estén configuradas como se muestra arriba.
-
-4. **Aplica las migraciones de la base de datos:**
-   Ejecuta el siguiente comando para aplicar las migraciones y configurar las tablas de la base de datos:
-   ```bash
-   dotnet ef database update
-   ```
-
-5. **Ejecuta la API:**
-   Inicia la API utilizando el siguiente comando:
-   ```bash
-   dotnet run
-   ```
-
-## Acceso a Swagger UI
-
-Después de ejecutar la API, Swagger estará disponible en [https://localhost:5001/swagger](https://localhost:5001/swagger) o [http://localhost:5000/swagger](http://localhost:5000/swagger), donde podrás explorar y probar la API directamente.
-
-## Autenticación JWT
-
-Para acceder a los endpoints protegidos, primero necesitas autenticarte enviando una solicitud POST a `/api/v1/auth/login` con tus credenciales de usuario. El servidor devolverá un token JWT, que deberás incluir en los encabezados de las solicitudes subsiguientes:
-
-```plaintext
-Authorization: Bearer {tu-token-jwt}
+```bash
+git clone https://github.com/OscarCalle0/PruebaNET_Hotel.git
+cd PruebaNET_Hotel
 ```
 
-### Ejemplo de Solicitud de Login
+### 2. Restore NuGet Packages
+
+Run the following command to restore the necessary packages:
+
+```bash
+dotnet restore
+```
+
+### 3. Configure Environment Variables
+
+Make sure the environment variables for the database and JWT are set as described above.
+
+### 4. Apply Database Migrations
+
+Apply the migrations to configure the database schema:
+
+```bash
+dotnet ef database update
+```
+
+### 5. Run the API
+
+Start the API with the following command:
+
+```bash
+dotnet run
+```
+
+## Accessing the Swagger Interface
+
+After running the API, Swagger will be available at:
+
+- [https://localhost:5001/swagger](https://localhost:5002/swagger)
+
+These allow you to explore and test the API.
+
+## JWT Authentication
+
+To access the protected endpoints, you must first authenticate by sending a `POST` request to `/api/v1/auth/login` with valid credentials. The server will return a JWT token that must be included in the headers of subsequent requests.
+
+### Example login request:
 
 ```http
 POST /api/v1/auth/login HTTP/1.1
@@ -82,39 +93,65 @@ Host: localhost:5000
 Content-Type: application/json
 
 {
-  "email": "tu_email@example.com",
-  "password": "tu_contraseña"
+  "email": "your_email@example.com",
+  "password": "your_password"
 }
 ```
 
-### Ejemplo de Uso del Token
-
-Una vez que tengas el token, puedes hacer una solicitud a un endpoint protegido como este:
+Once authenticated, include the JWT token in the `Authorization` header for requests to protected endpoints:
 
 ```http
-GET /api/v1/products HTTP/1.1
+GET /api/v1/reservations HTTP/1.1
 Host: localhost:5000
-Authorization: Bearer {tu-token-jwt}
+Authorization: Bearer {your-jwt-token}
 ```
 
-## Tecnologías Utilizadas
+## API Endpoints
 
-- ASP.NET Core 8
-- Entity Framework Core
-- JWT (JSON Web Tokens)
-- Base de datos MySQL
-- Swagger (para pruebas y documentación de la API)
+### Unprotected Endpoints (No Authentication Required)
 
-## Contribuciones
+- `POST /api/v1/auth/login`: Employee login and obtain a JWT token.
+- `GET /api/v1/rooms/available`: Get available rooms for reservation.
+- `GET /api/v1/room_types`: Get all available room types.
+- `GET /api/v1/room_types/{id}`: Get details of a specific room type.
+- `GET /api/v1/rooms/status`: Get a summary of room status (occupied vs available).
+- `POST /api/v1/guest`: Register a guest in the system.
 
-Si deseas contribuir a este proyecto, por favor sigue los pasos de configuración y envía un pull request.
+### Protected Endpoints (JWT Authentication Required)
 
-## Licencia
+- `GET /api/v1/bookings/search/{identification_number}`: Search guest reservations by identification number.
+- `GET /api/v1/bookings/{id}`: Get details of a specific reservation.
+- `POST /api/v1/bookings`: Create a new reservation for a guest.
+- `DELETE /api/v1/bookings/{id}`: Delete a specific reservation.
+- `GET /api/v1/rooms`: Get a list of all hotel rooms.
+- `GET /api/v1/rooms/{id}`: Get details of a specific room.
+- `GET /api/v1/guests`: Get a list of all registered guests in the system.
+- `GET /api/v1/guests/{id}`: Get details of a specific guest.
+- `DELETE /api/v1/guests/{id}`: Delete a specific guest from the system.
+- `GET /api/v1/guests/search/{keyword}`: Search guests using a keyword.
+- `PUT /api/v1/guests/{id}`: Update a guest’s personal information.
+- `GET /api/v1/rooms/occupied`: Get the rooms that are currently occupied.
 
-Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
-```
+## Technologies Used
 
-### Notas Finales
-- Asegúrate de que todas las rutas y detalles específicos sean correctos y reflejen tu implementación.
-- Revisa y ajusta la sección de "Ejemplo de Solicitud de Login" y "Ejemplo de Uso del Token" según el formato que estés utilizando para tus solicitudes.
-- Si hay información adicional que desees incluir, no dudes en hacerlo.
+- **ASP.NET Core 8**
+- **Entity Framework Core**
+- **JWT (JSON Web Tokens) for Authentication**
+- **MySQL Database**
+- **Swagger for API Documentation**
+
+## Seed Data
+
+The following predefined room types are loaded into the database on application startup:
+
+1. **Single Room**: Basic room with one single bed for solo travelers, priced at $50 per night.
+2. **Double Room**: Flexible room with two single beds or one double bed, priced at $80 per night.
+3. **Suite**: Luxurious room with a king-size bed and living area, priced at $150 per night.
+4. **Family Room**: Spacious room with multiple beds, ideal for families, priced at $200 per night.
+
+The hotel consists of 5 floors, with 10 rooms per floor, for a total of 50 rooms.
+
+## Contributing Guide
+
+If you wish to contribute to this project, follow the setup instructions described above and submit a pull request with your changes.
+
