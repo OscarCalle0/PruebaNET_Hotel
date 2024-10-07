@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hotel.Controllers.v1.Rooms
 {
-    [Authorize]
     [ApiController]
     [Route("api/v1/rooms")]
     public class RoomsController : ControllerBase
@@ -15,8 +14,5 @@ namespace Hotel.Controllers.v1.Rooms
         {
             service = roomRepository;
         }
-
-
     }
-
 }

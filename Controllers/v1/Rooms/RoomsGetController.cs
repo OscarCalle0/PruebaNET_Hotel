@@ -44,7 +44,7 @@ namespace Hotel.Controllers.v1.Rooms
 
         //5.GET /api/v1/rooms
         [Authorize]
-        [HttpGet]
+        [HttpGet("rooms")]
         public async Task<IActionResult> GetAllRooms()
         {
             var rooms = await service.GetAll(); // Use the inherited property from the base controller

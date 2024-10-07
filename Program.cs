@@ -1,14 +1,14 @@
 using System.Text;
 using DotNetEnv;
 using Hotel.Data;
+using Hotel.Models;
 using Hotel.Repositories;
 using Hotel.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+
 
 // Load environment variables
 Env.Load();
@@ -30,6 +30,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
 
 // Dependency injection
 builder.Services.AddScoped<IRoomRepository, RoomService>();
+builder.Services.AddScoped<IRoomTypeRepository, RoomTypeService>();
+builder.Services.AddScoped<IGuestRepository, GuestService>();
+
 
 // JWT configuration (uncommented and adjusted)
 builder.Services.AddAuthentication(config => {
