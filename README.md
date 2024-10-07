@@ -1,6 +1,3 @@
-Aquí tienes el contenido formateado correctamente para un archivo `README.md`, utilizando Markdown para diferenciar los títulos, bloques de código y demás elementos:
-
-```md
 # Hotel Reservation API with JWT Authentication
 
 This API, built with .NET 8, provides a set of endpoints to efficiently manage hotel reservations. It includes JWT-based authentication, allowing secure access for employees who manage guest reservations and room availability. The API integrates with a MySQL database and uses environment variables for configuration.
