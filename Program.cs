@@ -1,5 +1,7 @@
 //Environment variables are called
 using DotNetEnv;
+using Hotel.Data;
+using Microsoft.EntityFrameworkCore;
 
 Env.Load();
 
@@ -13,6 +15,11 @@ var DB_PASSWORD = Environment.GetEnvironmentVariable("DB_PASSWORD");
 var stringConnection = $"server={DB_HOST};port={DB_PORT};database={DB_NAME};uid={DB_USER};password={DB_PASSWORD}";
 
 var builder = WebApplication.CreateBuilder(args);
+
+//database connection
+builder.Services.AddDbContext<ApplicationDbContext>(options => {
+    options.UseMySql(stringConnection, ServerVersion.Parse("8.0.20-mysql"));
+});
 
 // Add services to the container.
 
