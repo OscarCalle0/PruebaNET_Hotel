@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hotel.DTOs.Requests
 {
-    public class BookingDto
+    public class BookingRequestDto
     {
         [Required]
         public int RoomId { get; set; }

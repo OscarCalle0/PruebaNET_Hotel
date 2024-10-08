@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Hotel.DTOs.Response
 {
-    public class RoomDto
+    public class RoomResponseDto
     {
         public int Id { get; set; }
 
