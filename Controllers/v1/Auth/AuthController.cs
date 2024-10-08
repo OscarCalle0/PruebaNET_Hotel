@@ -40,7 +40,7 @@ namespace Hotel.Controllers.v1
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] EmployeeLoginDto loginDto)
         {
-            // Autenticar usando el email
+         
             var employee = await _employeeService.Authenticate(loginDto.Email, loginDto.Password);
             if (employee == null)
                 return Unauthorized();

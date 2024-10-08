@@ -5,7 +5,7 @@ namespace Hotel.Services
 {
     public interface IEmployeeService
     {
-        Task<Employee> Authenticate(string email, string password);  // Cambiado a email
+        Task<Employee> Authenticate(string email, string password); 
         Task Register(Employee employee, string password);
     }
 }

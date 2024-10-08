@@ -45,8 +45,17 @@ namespace Hotel.Services
 
         public async Task AddBooking(Booking booking)
         {
-            _context.Bookings.Add(booking);
-            await _context.SaveChangesAsync();
+            var room = await _context.Rooms.FindAsync(booking.RoomId);
+            if (room != null && room.Availability)
+            {
+                room.Availability = false; 
+                _context.Bookings.Add(booking);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception("Room is not available for booking.");
+            }
         }
 
         public async Task DeleteBooking(int id)
